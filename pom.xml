@@ -3,12 +3,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lotte.excel</groupId>
-    <artifactId>excel-example</artifactId>
+    <groupId>com.lotte.redis</groupId>
+    <artifactId>redis-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>excel-example</name>
+    <name>redis-example</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -21,7 +21,44 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <env>dev</env>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <!-- <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation> -->
+            <properties>
+                <env>local</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>staging</id>
+            <properties>
+                <env>staging</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -77,19 +114,23 @@
             <version>3.7</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.17</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <version>1.11.241</version>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.14</version>
         </dependency>
         <dependency>
             <groupId>com.lotte.lps</groupId>
             <artifactId>lps-core</artifactId>
             <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
         </dependency>
     </dependencies>
 
@@ -100,7 +141,16 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <resources>
+            <!-- <resource>
+                <directory>src/main/resources</directory>
+            </resource> -->
+            <resource>
+                <directory>src/main/resources-${env}</directory>
+            </resource>
+        </resources>
     </build>
 
-    <description>excel-example</description>
+    <description>redis-example</description>
+
 </project>

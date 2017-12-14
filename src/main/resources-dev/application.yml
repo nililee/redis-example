@@ -1,0 +1,31 @@
+# embeded tomcat
+server:
+  port: 8888
+  context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  profiles: dev
+  http:
+    encoding:
+      charset: UTF-8 # the encoding of HTTP requests/responses
+      enabled: true # enable http encoding support
+      force: true # force the configured encoding
+  redis:
+    session:
+      cluster:
+        nodes:
+          - 127.0.0.1:7003
+          - 127.0.0.1:7004
+          - 127.0.0.1:7005
+          - 127.0.0.1:8003
+          - 127.0.0.1:8004
+          - 127.0.0.1:8005
+
+aws:
+  region: ap-northeast-2
+  profile: b2-dev-ia-seoul
+  s3:
+    bucket: b2-poc-excel-test
+    upload: temp/excel

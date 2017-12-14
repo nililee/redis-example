@@ -6,14 +6,26 @@ server:
     uri-encoding: UTF-8
 
 spring:
+  profiles: local
   http:
     encoding:
       charset: UTF-8 # the encoding of HTTP requests/responses
       enabled: true # enable http encoding support
       force: true # force the configured encoding
+  redis:
+    session:
+      host: 127.0.0.1
+      port: 7379
+      database: 0
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
 
 aws:
   region: ap-northeast-2
   profile: b2-dev-ia-seoul
   s3:
     bucket: b2-poc-excel-test
+    upload: temp/excel
