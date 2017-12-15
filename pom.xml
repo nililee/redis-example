@@ -151,6 +151,12 @@
         </resources>
     </build>
 
-    <description>redis-example</description>
+    <repositories>
+        <repository>
+            <id>com.lotte.maven</id>
+            <name>my temp maven</name>
+            <url>http://52.71.69.39:8081/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
 </project>
